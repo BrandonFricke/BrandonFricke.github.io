@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS Variables for Easy Theme Customization --- */
+        :root {
+            --bg-color: #1a1a1a;
+            --surface-color: #2c2c2c;
+            --primary-text: #f0f0f0;
+            --secondary-text: #a0a0a0;
+            --accent-color: #00ff9d; /* A vibrant green accent */
+            --border-color: #444444;
+        }
+
+        /* --- General Body & Typography --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--primary-text);
+            font-family: 'Source Sans Pro', sans-serif;
+            line-height: 1.7;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 40px 0;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Roboto Mono', monospace;
+            color: var(--primary-text);
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            border-bottom: 3px solid var(--accent-color);
+            display: inline-block;
+            padding-bottom: 8px;
+            margin-bottom: 3rem;
+        }
+
+        h3 {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: white;
+        }
+
+        /* --- Navigation Bar --- */
+        .navbar {
+            background-color: rgba(26, 26, 26, 0.85); /* Semi-transparent */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0; /* Remove padding for full-width feel */
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 700;
+            color: var(--primary-text);
+        }
+
+        /* --- Hero Section with Typing Effect --- */
+        .hero {
+            text-align: left;
+            padding: 100px 0;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 2rem;
+            color: var(--secondary-text);
+            font-family: 'Roboto Mono', monospace;
+            margin-bottom: 2rem;
+        }
+        
+        /* The typing cursor effect */
+        .type-cursor {
+            color: var(--accent-color);
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to { color: transparent }
+            50% { color: var(--accent-color); }
+        }
+
+        .cta-button {
+            background-color: var(--accent-color);
+            color: #1a1a1a;
+            padding: 15px 30px;
+            font-weight: bold;
+            font-family: 'Roboto Mono', monospace;
+            border-radius: 5px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            color: #1a1a1a;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0, 255, 157, 0.2);
+        }
+
+        /* --- Projects Section --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+        }
+
+        .project-card p {
+            color: var(--secondary-text);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .project-tags {
+            margin-bottom: 1rem;
+        }
+
+        .project-tags span {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-family: 'Roboto Mono', monospace;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+        
+        /* --- Skills & Certs Section --- */
+        #skills .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4rem;
+            align-items: flex-start;
+        }
+
+        .skills-column, .certs-column {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .skills-column h3, .certs-column h3 {
+            margin-bottom: 1.5rem;
+        }
+
+        .skills-list, .certs-list {
+            list-style: none;
+        }
+        
+        .skills-list li, .certs-list li {
+            background-color: var(--surface-color);
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            border-radius: 5px;
+            border-left: 4px solid var(--accent-color);
+            transition: background-color 0.3s ease;
+        }
+        .skills-list li:hover, .certs-list li:hover {
+            background-color: #3a3a3a;
+        }
+
+
+        /* --- Contact & Footer --- */
+        .contact-section {
+            text-align: center;
+            background-color: var(--surface-color);
+        }
+
+        .contact-section p {
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+            color: var(--secondary-text);
+            font-size: 1.1rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--secondary-text);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ======== NAVIGATION BAR ======== -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="nav-logo">NAME</a>
+            <ul class="nav-links">
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+
+        <!-- ======== HERO SECTION ======== -->
+        <section class="hero">
+            <div class="container">
+                <!-- 
+                    TODO: Change "Your Name" below.
+                    The text in the `data-text` attribute will be typed out automatically.
+                -->
+                <h1 class="hero-title">Hi, I'm Your Name.</h1>
+                <p class="hero-subtitle">I build solutions for the <span id="type-text"></span><span class="type-cursor">|</span></p>
+                <a href="#projects" class="cta-button">View My Work</a>
+            </div>
+        </section>
+
+        <!-- ======== PROJECTS SECTION ======== -->
+        <section id="projects">
+            <div class="container">
+                <h2>My Projects</h2>
+                <div class="project-grid">
+
+                    <!-- 
+                        !!! HOW TO ADD A NEW PROJECT !!!
+                        To add a project, copy the entire block from
+                        <div class="project-card"> to the closing </div>
+                        and paste it next to the others. Then, edit the content.
+                    -->
+
+                    <!-- --- PROJECT 1 (EXAMPLE) --- -->
+                    <div class="project-card">
+                        <h3>Automated Cloud Security Auditing</h3>
+                        <div class="project-tags">
+                            <span>Python</span><span>AWS SDK</span><span>Lambda</span><span>IAM</span><span>EventBridge</span>
+                        </div>
+                        <p>
+                            A serverless application that runs daily security checks on an AWS environment. It scans for insecure S3 buckets, permissive IAM roles, and open security groups, sending a report via SNS.
+                        </p>
+                        <div class="project-links">
+                            <a href="#" target="_blank">View on GitHub &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- --- PROJECT 2 (FUTURE PROJECT PLACEHOLDER) --- -->
+                    <div class="project-card">
+                        <h3>Future Project: IaC-Managed Kubernetes Cluster</h3>
+                        <div class="project-tags">
+                            <span>Terraform</span><span>AWS EKS</span><span>Docker</span><span>CI/CD</span>
+                        </div>
+                        <p>
+                           This project will involve provisioning a complete EKS cluster and its networking infrastructure using Terraform. The goal is to create a repeatable, version-controlled environment for deploying containerized applications.
+                        </p>
+                        <div class="project-links">
+                            <a href="#">In Progress...</a>
+                        </div>
+                    </div>
+
+                    <!-- --- PROJECT 3 (FUTURE PROJECT PLACEHOLDER) --- -->
+                    <div class="project-card">
+                        <h3>Future Project: Serverless Data Processing Pipeline</h3>
+                        <div class="project-tags">
+                            <span>AWS Lambda</span><span>API Gateway</span><span>DynamoDB</span><span>S3</span>
+                        </div>
+                        <p>
+                           An event-driven pipeline that processes uploaded images. It will automatically resize images using a Lambda function triggered by an S3 event and store metadata in a DynamoDB table, exposed via an API Gateway.
+                        </p>
+                        <div class="project-links">
+                            <a href="#">Planning Stage</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        
+        <!-- ======== SKILLS & CERTIFICATIONS SECTION ======== -->
+        <section id="skills">
+            <div class="container">
+                <div class="skills-column">
+                    <h3>Technical Skills</h3>
+                    <!-- TODO: Edit this list to reflect your skills -->
+                    <ul class="skills-list">
+                        <li><b>Cloud:</b> AWS (VPC, EC2, S3, IAM, RDS, Lambda)</li>
+                        <li><b>IaC:</b> Terraform, AWS CloudFormation</li>
+                        <li><b>Security:</b> WAF, Security Groups, IAM Policies, AWS Inspector</li>
+                        <li><b>CI/CD:</b> Jenkins, AWS CodePipeline, GitHub Actions</li>
+                        <li><b>Containers:</b> Docker, Kubernetes (EKS)</li>
+                        <li><b>Scripting:</b> Python, Bash</li>
+                        <li><b>Project Mgmt:</b> Agile, Scrum, Kanban, JIRA</li>
+                    </ul>
+                </div>
+                <div class="certs-column">
+                    <h3>Certifications</h3>
+                    <!-- This list is pre-filled based on your provided info -->
+                    <ul class="certs-list">
+                        <li>AWS Certified Security - Specialty (SCS-C02)</li>
+                        <li>AWS Certified Solutions Architect – Associate (SAA-C03)</li>
+                        <li>Project Management Professional (PMP)</li>
+                        <li>Certified ScrumMaster (CSM)</li>
+                        <li>AWS Certified Cloud Practitioner</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== CONTACT SECTION ======== -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2>Get In Touch</h2>
+                <p>
+                    I am actively seeking new opportunities in cloud and security engineering. 
+                    My inbox is always open, whether you have a question or just want to say hi, I'll get back to you!
+                </p>
+                <!-- TODO: Replace with your email and LinkedIn profile URL -->
+                <a href="mailto:your.email@example.com" class="cta-button">Say Hello</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ======== FOOTER ======== -->
+    <footer>
+        <!-- TODO: Replace with your name and links -->
+        <p>&copy; 2025 Your Name | <a href="#" target="_blank">LinkedIn</a> &bull; <a href="#" target="_blank">GitHub</a></p>
+    </footer>
+
+    <!-- JavaScript for Typing Effect -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const textElement = document.getElementById('type-text');
+            // TODO: Customize the phrases to be typed out
+            const textArray = ["cloud.", "future.", "enterprise.", "secure web."];
+            const typingDelay = 150;
+            const erasingDelay = 100;
+            const newTextDelay = 2000; // Delay between current and next text
+            let textArrayIndex = 0;
+            let charIndex = 0;
+
+            function type() {
+                if (charIndex < textArray[textArrayIndex].length) {
+                    textElement.textContent += textArray[textArrayIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(type, typingDelay);
+                } else {
+                    setTimeout(erase, newTextDelay);
+                }
+            }
+
+            function erase() {
+                if (charIndex > 0) {
+                    textElement.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
+                    charIndex--;
+                    setTimeout(erase, erasingDelay);
+                } else {
+                    textArrayIndex++;
+                    if (textArrayIndex >= textArray.length) textArrayIndex = 0;
+                    setTimeout(type, typingDelay + 1100);
+                }
+            }
+
+            setTimeout(type, newTextDelay);
+        });
+    </script>
+
+</body>
+</html>
